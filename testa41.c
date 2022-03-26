@@ -15,6 +15,8 @@ int main(int argc, char*argv)
 {
     //struct object runtime
     struct human *obj =(struct human*)  malloc(10* sizeof(struct human));
+    // initialize integer array
+
     obj[0].a = 200;
     obj[0].b = 'z';
     print(obj[0]);
@@ -37,5 +39,7 @@ int main(int argc, char*argv)
     int* p = (int*) malloc(10*sizeof(int));
 }
 */
+    // deallocate the memory
+    free(obj);
     return 0;
 }
