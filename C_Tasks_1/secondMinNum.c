@@ -2,6 +2,14 @@
 #include <stdio.h>
 #include <limits.h>
 
+void func_1();
+#pragma exit func_1
+
+void func_1(){
+    printf("PRGRAM END");
+    return;
+}
+
 int main(int argc, char** args){
     int min, minNext;
     printf("Enter the Array elements(Enter -99 to stop input): ");
