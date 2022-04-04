@@ -1,0 +1,10 @@
+Emp01 Asad M internee 1 14000.000000
+Emp02 Ali M internee 1 24000.000000
+Emp03 Ahmed M developer 2 54000.000000
+Emp04 Sadia F internee 1 10000.000000
+Emp05 Iqra F internee 1 24000.000000
+Emp06 Habiba F internee 1 14000.000000
+Emp07 Umer M developer 7 100000.000000
+Emp08 Adeel M developer 25 250000.000000
+Emp09 Iqbal M internee 1 19000.000000
+Emp10 Mareena F internee 2 25000.000000
