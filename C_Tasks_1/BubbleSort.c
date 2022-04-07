@@ -9,8 +9,8 @@ void printNumbers(int*, int);
 int main(int argv, char** argc){
 
     const int SIZE = 20;
-    int* numbers = (int*) malloc(sizeof(int) * SIZE);
-    int* sortedNumbers = (int*) malloc(sizeof(int) * SIZE);
+    int* numbers = (int*) calloc(sizeof(int), SIZE);
+    int* sortedNumbers = (int*) calloc(sizeof(int), SIZE);
     int actualSize = populateArray(numbers, sortedNumbers, SIZE);
     bubbleSort(sortedNumbers, actualSize);
     printf("The entered sequence is: ");
