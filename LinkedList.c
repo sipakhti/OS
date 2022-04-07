@@ -8,6 +8,13 @@ typedef struct Node
     struct Node* prev;
 } Node;
 
+void push(int);
+int pop();
+Node* search(int);
+void deleteNode(Node*);
+void print();
+void deleteList();
+
 Node *head = NULL;
 Node *tail = NULL;
 int size = 0;
@@ -38,7 +45,7 @@ int pop()
 {
     if (head == NULL) return -1;
     int data = tail->data;
-    delete(tail);
+    deleteNode(tail);
     return data;
 }
 
@@ -78,7 +85,16 @@ void print()
     printf("\n");
 }
 
-
+void deleteList(){
+    Node *temp = head;
+    while (temp != NULL)
+    {
+        head = head->next;
+        free(temp);
+        temp = head;
+    }
+    return;
+}
 
 
 int main(int argc, char** argv)
@@ -92,5 +108,6 @@ int main(int argc, char** argv)
     pop();
     print();
     printf("Hello World\n");
+    deleteList();
     return 0;
 }
