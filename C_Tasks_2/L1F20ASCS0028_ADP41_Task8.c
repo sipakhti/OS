@@ -19,14 +19,17 @@
 #define WRITE 1
 
 
-int main(){
+int main(int argumentCount, char** arguments){
+    char inputFile = "input.txt";
+    char outputFile = "output.txt";
+    char tempFile = "temp";
     
     pid_t pid_ls = fork(); // create child process
     if (pid_ls == 0)
     {
         //child process
 
-        FILE *fp = fopen("input.txt", "w"); // open input file to save the result of the cmd
+        FILE *fp = fopen(inputFile, "w"); // open input file to save the result of the cmd
         dup2(fileno(fp), STDOUT_FILENO); // redirect stdout to file
         fclose(fp);
         // fp = fopen("error log.txt","w"); // open error log file
@@ -41,10 +44,10 @@ int main(){
         if (pid_grep == 0)
         {
             // child process
-            FILE *fp = fopen("input.txt", "r"); // open input file in which ls has stored the result
+            FILE *fp = fopen(inputFile, "r"); // open input file in which ls has stored the result
             dup2(fileno(fp), STDIN_FILENO); // hook stdin to input file from ls
             fclose(fp); // close file object
-            fp = fopen("temp", "w"); // open temp file to store result of grep
+            fp = fopen(tempFile, "w"); // open temp file to store result of grep
             dup2(fileno(fp), STDOUT_FILENO); // hook stdout to temp file for grep
             fclose(fp); // close file object
             execlp("grep", "grep", "m", NULL); // execute grep
@@ -56,10 +59,10 @@ int main(){
             if (pid_sort == 0)
             {
                 // Child process
-                FILE *fp = fopen("temp", "r"); // open temp file in whicb grep data is stored
+                FILE *fp = fopen(tempFile, "r"); // open temp file in whicb grep data is stored
                 dup2(fileno(fp), STDIN_FILENO); // hook stdin of sort to temp file
                 fclose(fp); // close file object
-                fp = fopen("output.txt", "w"); // open output file to store result of sort
+                fp = fopen(outputFile, "w"); // open output file to store result of sort
                 dup2(fileno(fp), STDOUT_FILENO); // hook stdout of sort to output file
                 fclose(fp); // close file object
                 execlp("sort", "sort", NULL); // execute sort
@@ -72,6 +75,6 @@ int main(){
         }
 
     }
-    execlp("rm", "rm", "temp", NULL); // cleaup of temp files
+    execlp("rm", "rm", tempFile, NULL); // cleaup of temp files
     return 0;
 }
